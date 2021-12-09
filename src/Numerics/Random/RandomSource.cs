@@ -40,7 +40,7 @@ namespace MathNet.Numerics.Random
     /// </summary>
     [Serializable]
     [DataContract(Namespace = "urn:MathNet/Numerics/Random")]
-    public abstract class RandomSource : System.Random
+    public abstract partial class RandomSource : System.Random
     {
         readonly bool _threadSafe;
         readonly object _lock = new object();

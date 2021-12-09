@@ -51,7 +51,7 @@ namespace MathNet.Numerics.Distributions
             {
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             Scale = scale;
             Shape = shape;
             Truncation = truncation;
@@ -84,7 +84,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>

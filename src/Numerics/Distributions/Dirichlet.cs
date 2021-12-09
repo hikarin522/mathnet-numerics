@@ -55,7 +55,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             _alpha = (double[])alpha.Clone();
         }
 
@@ -72,7 +72,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             _alpha = (double[])alpha.Clone();
         }
 
@@ -90,7 +90,7 @@ namespace MathNet.Numerics.Distributions
                 parm[i] = alpha;
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             if (Control.CheckDistributionParameters && !IsValidParameterSet(parm))
             {
                 throw new ArgumentException("Invalid parametrization for the distribution.");
@@ -114,7 +114,7 @@ namespace MathNet.Numerics.Distributions
                 parm[i] = alpha;
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             if (Control.CheckDistributionParameters && !IsValidParameterSet(parm))
             {
                 throw new ArgumentException("Invalid parametrization for the distribution.");
@@ -171,7 +171,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>

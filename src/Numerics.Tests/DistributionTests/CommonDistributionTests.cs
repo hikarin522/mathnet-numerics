@@ -106,13 +106,13 @@ namespace MathNet.Numerics.UnitTests.DistributionTests
         [Test, TestCaseSource(nameof(DiscreteDistributions))]
         public void CanSetRandomSourceDiscrete(IDiscreteDistribution distribution)
         {
-            distribution.RandomSource = MersenneTwister.Default;
+            distribution.RandomSource = MersenneTwister.Shared;
         }
 
         [Test, TestCaseSource(nameof(ContinuousDistributions))]
         public void CanSetRandomSourceContinuous(IContinuousDistribution distribution)
         {
-            distribution.RandomSource = MersenneTwister.Default;
+            distribution.RandomSource = MersenneTwister.Shared;
         }
 
         [Test, TestCaseSource(nameof(DiscreteDistributions))]

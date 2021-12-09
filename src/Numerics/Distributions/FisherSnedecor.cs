@@ -59,7 +59,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             _freedom1 = d1;
             _freedom2 = d2;
         }
@@ -77,7 +77,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             _freedom1 = d1;
             _freedom2 = d2;
         }
@@ -117,7 +117,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -451,7 +451,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SampleUnchecked(SystemRandomSource.Default, d1, d2);
+            return SampleUnchecked(SystemRandomSource.Shared, d1, d2);
         }
 
         /// <summary>
@@ -467,7 +467,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SamplesUnchecked(SystemRandomSource.Default, d1, d2);
+            return SamplesUnchecked(SystemRandomSource.Shared, d1, d2);
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            SamplesUnchecked(SystemRandomSource.Default, values, d1, d2);
+            SamplesUnchecked(SystemRandomSource.Shared, values, d1, d2);
         }
     }
 }

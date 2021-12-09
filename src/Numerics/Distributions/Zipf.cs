@@ -67,7 +67,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             _s = s;
             _n = n;
         }
@@ -85,7 +85,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             _s = s;
             _n = n;
         }
@@ -125,7 +125,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SampleUnchecked(SystemRandomSource.Default, s, n);
+            return SampleUnchecked(SystemRandomSource.Shared, s, n);
         }
 
         /// <summary>
@@ -449,7 +449,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SamplesUnchecked(SystemRandomSource.Default, s, n);
+            return SamplesUnchecked(SystemRandomSource.Shared, s, n);
         }
 
         /// <summary>
@@ -465,7 +465,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            SamplesUnchecked(SystemRandomSource.Default, values, s, n);
+            SamplesUnchecked(SystemRandomSource.Shared, values, s, n);
         }
     }
 }

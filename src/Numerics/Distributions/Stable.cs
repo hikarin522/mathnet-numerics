@@ -64,7 +64,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             _alpha = alpha;
             _beta = beta;
             _scale = scale;
@@ -86,7 +86,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             _alpha = alpha;
             _beta = beta;
             _scale = scale;
@@ -140,7 +140,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -587,7 +587,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SampleUnchecked(SystemRandomSource.Default, alpha, beta, scale, location);
+            return SampleUnchecked(SystemRandomSource.Shared, alpha, beta, scale, location);
         }
 
         /// <summary>
@@ -605,7 +605,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SamplesUnchecked(SystemRandomSource.Default, alpha, beta, scale, location);
+            return SamplesUnchecked(SystemRandomSource.Shared, alpha, beta, scale, location);
         }
 
         /// <summary>
@@ -624,7 +624,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            SamplesUnchecked(SystemRandomSource.Default, values, alpha, beta, scale, location);
+            SamplesUnchecked(SystemRandomSource.Shared, values, alpha, beta, scale, location);
         }
     }
 }

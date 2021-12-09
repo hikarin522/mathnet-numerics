@@ -67,7 +67,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             _shapeA = a;
             _shapeB = b;
         }
@@ -85,7 +85,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             _shapeA = a;
             _shapeB = b;
         }
@@ -125,7 +125,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -703,7 +703,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SampleUnchecked(SystemRandomSource.Default, a, b);
+            return SampleUnchecked(SystemRandomSource.Shared, a, b);
         }
 
         /// <summary>
@@ -719,7 +719,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SamplesUnchecked(SystemRandomSource.Default, a, b);
+            return SamplesUnchecked(SystemRandomSource.Shared, a, b);
         }
 
         /// <summary>
@@ -736,7 +736,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            SamplesUnchecked(SystemRandomSource.Default, values, a, b);
+            SamplesUnchecked(SystemRandomSource.Shared, values, a, b);
         }
     }
 }

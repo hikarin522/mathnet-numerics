@@ -85,7 +85,15 @@ namespace MathNet.Numerics.Random
         /// <summary>
         /// Default instance, thread-safe.
         /// </summary>
+        [Obsolete("This property is obsolete. Use Shared instead.")]
         public static SystemRandomSource Default => DefaultInstance.Value;
+
+        static readonly ThreadLocal<SystemRandomSource> SharedInstance = new ThreadLocal<SystemRandomSource>(() => new SystemRandomSource(false));
+
+        /// <summary>
+        /// Provides a thread-safe <see cref="RandomSource"/> instance that may be used concurrently from any thread.
+        /// </summary>
+        public static RandomSource Shared { get; } = new ThreadSafeRandomSource<SystemRandomSource>(SharedInstance);
 
         /// <summary>
         /// Returns a random double-precision floating point number greater than or equal to 0.0, and less than 1.0.
@@ -139,7 +147,7 @@ namespace MathNet.Numerics.Random
         {
             if (values.Length < 2048)
             {
-                Default.NextDoubles(values);
+                Shared.NextDoubles(values);
                 return;
             }
 
@@ -172,7 +180,7 @@ namespace MathNet.Numerics.Random
         /// <remarks>Supports being called in parallel from multiple threads, but the result must be enumerated from a single thread each.</remarks>
         public static IEnumerable<double> DoubleSequence()
         {
-            var rnd1 = Default;
+            var rnd1 = Shared;
             for (int i = 0; i < 128; i++)
             {
                 yield return rnd1.NextDouble();

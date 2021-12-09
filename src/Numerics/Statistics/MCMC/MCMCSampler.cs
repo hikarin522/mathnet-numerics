@@ -106,7 +106,7 @@ namespace MathNet.Numerics.Statistics.Mcmc
         {
             Accepts = 0;
             Samples = 0;
-            RandomSource = SystemRandomSource.Default;
+            RandomSource = SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace MathNet.Numerics.Statistics.Mcmc
         public System.Random RandomSource
         {
             get => _randomNumberGenerator;
-            set => _randomNumberGenerator = value ?? SystemRandomSource.Default;
+            set => _randomNumberGenerator = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>

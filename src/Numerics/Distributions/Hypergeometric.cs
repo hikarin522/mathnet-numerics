@@ -61,7 +61,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             _population = population;
             _success = success;
             _draws = draws;
@@ -81,7 +81,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             _population = population;
             _success = success;
             _draws = draws;
@@ -115,7 +115,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -418,7 +418,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SampleUnchecked(SystemRandomSource.Default, population, success, draws);
+            return SampleUnchecked(SystemRandomSource.Shared, population, success, draws);
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SamplesUnchecked(SystemRandomSource.Default, population, success, draws);
+            return SamplesUnchecked(SystemRandomSource.Shared, population, success, draws);
         }
 
         /// <summary>
@@ -451,7 +451,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            SamplesUnchecked(SystemRandomSource.Default, values, population, success, draws);
+            SamplesUnchecked(SystemRandomSource.Shared, values, population, success, draws);
         }
     }
 }

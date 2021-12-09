@@ -64,7 +64,7 @@ namespace MathNet.Numerics.Distributions
         /// as this is often impossible using floating point arithmetic.</param>
         /// <exception cref="ArgumentException">If any of the probabilities are negative or do not sum to one.</exception>
         public Categorical(double[] probabilityMass)
-            : this(probabilityMass, SystemRandomSource.Default)
+            : this(probabilityMass, SystemRandomSource.Shared)
         {
         }
 
@@ -82,7 +82,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
 
             // Extract unnormalized cumulative distribution
             _cdfUnnormalized = new double[probabilityMass.Length];
@@ -123,7 +123,7 @@ namespace MathNet.Numerics.Distributions
                 p[i] = histogram[i].Count;
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
 
             if (Control.CheckDistributionParameters && !IsValidProbabilityMass(p))
             {
@@ -212,7 +212,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -683,7 +683,7 @@ namespace MathNet.Numerics.Distributions
             }
 
             var cdf = ProbabilityMassToCumulativeDistribution(probabilityMass);
-            return SampleUnchecked(SystemRandomSource.Default, cdf);
+            return SampleUnchecked(SystemRandomSource.Shared, cdf);
         }
 
         /// <summary>
@@ -699,7 +699,7 @@ namespace MathNet.Numerics.Distributions
             }
 
             var cdf = ProbabilityMassToCumulativeDistribution(probabilityMass);
-            return SamplesUnchecked(SystemRandomSource.Default, cdf);
+            return SamplesUnchecked(SystemRandomSource.Shared, cdf);
         }
 
         /// <summary>
@@ -716,7 +716,7 @@ namespace MathNet.Numerics.Distributions
             }
 
             var cdf = ProbabilityMassToCumulativeDistribution(probabilityMass);
-            SamplesUnchecked(SystemRandomSource.Default, values, cdf);
+            SamplesUnchecked(SystemRandomSource.Shared, values, cdf);
         }
 
         /// <summary>
@@ -780,7 +780,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SampleUnchecked(SystemRandomSource.Default, cdfUnnormalized);
+            return SampleUnchecked(SystemRandomSource.Shared, cdfUnnormalized);
         }
 
         /// <summary>
@@ -795,7 +795,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SamplesUnchecked(SystemRandomSource.Default, cdfUnnormalized);
+            return SamplesUnchecked(SystemRandomSource.Shared, cdfUnnormalized);
         }
 
         /// <summary>
@@ -811,7 +811,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            SamplesUnchecked(SystemRandomSource.Default, values, cdfUnnormalized);
+            SamplesUnchecked(SystemRandomSource.Shared, values, cdfUnnormalized);
         }
     }
 }

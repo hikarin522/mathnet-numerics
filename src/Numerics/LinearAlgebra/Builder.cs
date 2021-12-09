@@ -406,7 +406,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public Matrix<T> Random(int rows, int columns)
         {
-            return Random(rows, columns, new Normal(SystemRandomSource.Default));
+            return Random(rows, columns, new Normal(SystemRandomSource.Shared));
         }
 
         /// <summary>
@@ -433,7 +433,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public Matrix<T> RandomPositiveDefinite(int order)
         {
-            var a = Random(order, order, new Normal(SystemRandomSource.Default));
+            var a = Random(order, order, new Normal(SystemRandomSource.Shared));
             return a.ConjugateTransposeThisAndMultiply(a);
         }
 
@@ -1465,7 +1465,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public Vector<T> Random(int length)
         {
-            return Random(length, new Normal(SystemRandomSource.Default));
+            return Random(length, new Normal(SystemRandomSource.Shared));
         }
 
         /// <summary>

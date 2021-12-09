@@ -173,7 +173,15 @@ namespace MathNet.Numerics.Random
         /// <summary>
         /// Default instance, thread-safe.
         /// </summary>
+        [Obsolete("This property is obsolete. Use Shared instead.")]
         public static MersenneTwister Default => DefaultInstance.Value;
+
+        static readonly ThreadLocal<MersenneTwister> SharedInstance = new ThreadLocal<MersenneTwister>(() => new MersenneTwister(false));
+
+        /// <summary>
+        /// Provides a thread-safe <see cref="RandomSource"/> instance that may be used concurrently from any thread.
+        /// </summary>
+        public static RandomSource Shared { get; } = new ThreadSafeRandomSource<MersenneTwister>(SharedInstance);
 
         /*/// <summary>
         /// Initializes a new instance of the <see cref="MersenneTwister"/> class.

@@ -60,7 +60,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = SystemRandomSource.Default;
+            _random = SystemRandomSource.Shared;
             _shape = shape;
             _scale = scale;
         }
@@ -78,7 +78,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            _random = randomSource ?? SystemRandomSource.Default;
+            _random = randomSource ?? SystemRandomSource.Shared;
             _shape = shape;
             _scale = scale;
         }
@@ -118,7 +118,7 @@ namespace MathNet.Numerics.Distributions
         public System.Random RandomSource
         {
             get => _random;
-            set => _random = value ?? SystemRandomSource.Default;
+            set => _random = value ?? SystemRandomSource.Shared;
         }
 
         /// <summary>
@@ -395,7 +395,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SampleUnchecked(SystemRandomSource.Default, shape, scale);
+            return SampleUnchecked(SystemRandomSource.Shared, shape, scale);
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            return SamplesUnchecked(SystemRandomSource.Default, shape, scale);
+            return SamplesUnchecked(SystemRandomSource.Shared, shape, scale);
         }
 
         /// <summary>
@@ -428,7 +428,7 @@ namespace MathNet.Numerics.Distributions
                 throw new ArgumentException("Invalid parametrization for the distribution.");
             }
 
-            SamplesUnchecked(SystemRandomSource.Default, values, shape, scale);
+            SamplesUnchecked(SystemRandomSource.Shared, values, shape, scale);
         }
     }
 }

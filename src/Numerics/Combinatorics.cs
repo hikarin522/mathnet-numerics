@@ -153,7 +153,7 @@ namespace MathNet.Numerics
         /// <param name="randomSource">The random number generator to use. Optional; the default random source will be used if null.</param>
         public static void SelectPermutationInplace<T>(T[] data, System.Random randomSource = null)
         {
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
 
             // Fisher-Yates Shuffling
             for (int i = data.Length - 1; i > 0; i--)
@@ -173,7 +173,7 @@ namespace MathNet.Numerics
         /// <param name="randomSource">The random number generator to use. Optional; the default random source will be used if null.</param>
         public static IEnumerable<T> SelectPermutation<T>(this IEnumerable<T> data, System.Random randomSource = null)
         {
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
             T[] array = data.ToArray();
 
             // Fisher-Yates Shuffling
@@ -195,7 +195,7 @@ namespace MathNet.Numerics
         {
             if (n < 0) throw new ArgumentOutOfRangeException(nameof(n), "Value must not be negative (zero is ok).");
 
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
 
             bool[] mask = new bool[n];
             for (int i = 0; i < mask.Length; i++)
@@ -219,7 +219,7 @@ namespace MathNet.Numerics
             if (k < 0) throw new ArgumentOutOfRangeException(nameof(k), "Value must not be negative (zero is ok).");
             if (k > n) throw new ArgumentOutOfRangeException(nameof(k), $"{"k"} must be smaller than or equal to {"n"}.");
 
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
 
             bool[] mask = new bool[n];
             if (k*3 < n)
@@ -286,7 +286,7 @@ namespace MathNet.Numerics
             if (n < 0) throw new ArgumentOutOfRangeException(nameof(n), "Value must not be negative (zero is ok).");
             if (k < 0) throw new ArgumentOutOfRangeException(nameof(k), "Value must not be negative (zero is ok).");
 
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
 
             int[] mask = new int[n];
             for (int i = 0; i < k; i++)
@@ -334,7 +334,7 @@ namespace MathNet.Numerics
             if (k < 0) throw new ArgumentOutOfRangeException(nameof(k), "Value must not be negative (zero is ok).");
             if (k > n) throw new ArgumentOutOfRangeException(nameof(k), $"k must be smaller than or equal to n.");
 
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
 
             int[] indices = new int[n];
             for (int i = 0; i < indices.Length; i++)
@@ -364,7 +364,7 @@ namespace MathNet.Numerics
         /// <returns>The chosen variation, in random order.</returns>
         public static IEnumerable<T> SelectVariation<T>(this IEnumerable<T> data, int elementsToChoose, System.Random randomSource = null)
         {
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
             T[] array = data.ToArray();
 
             if (elementsToChoose < 0) throw new ArgumentOutOfRangeException(nameof(elementsToChoose), "Value must not be negative (zero is ok).");
@@ -391,7 +391,7 @@ namespace MathNet.Numerics
             if (n < 0) throw new ArgumentOutOfRangeException(nameof(n), "Value must not be negative (zero is ok).");
             if (k < 0) throw new ArgumentOutOfRangeException(nameof(k), "Value must not be negative (zero is ok).");
 
-            var random = randomSource ?? SystemRandomSource.Default;
+            var random = randomSource ?? SystemRandomSource.Shared;
 
             int[] ret = new int[k];
             random.NextInt32s(ret, 0, n);

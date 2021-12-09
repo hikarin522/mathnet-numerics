@@ -940,7 +940,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static IEnumerable<T> UniformMap2Sequence<T>(Func<double, double, T> map)
         {
-            var rnd1 = SystemRandomSource.Default;
+            var rnd1 = SystemRandomSource.Shared;
             for (int i = 0; i < 128; i++)
             {
                 yield return map(rnd1.NextDouble(), rnd1.NextDouble());
@@ -980,7 +980,7 @@ namespace MathNet.Numerics
             }
 
             var samples = new double[length];
-            Distributions.Normal.Samples(SystemRandomSource.Default, samples, mean, standardDeviation);
+            Distributions.Normal.Samples(SystemRandomSource.Shared, samples, mean, standardDeviation);
             return samples;
         }
 
@@ -989,7 +989,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static IEnumerable<double> NormalSequence(double mean, double standardDeviation)
         {
-            return Distributions.Normal.Samples(SystemRandomSource.Default, mean, standardDeviation);
+            return Distributions.Normal.Samples(SystemRandomSource.Shared, mean, standardDeviation);
         }
 
         /// <summary>
